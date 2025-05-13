@@ -97,7 +97,7 @@ def preprocess():
 import argparse
 def parser_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_path',type=str,help=" ",default="data")
+    parser.add_argument('--data_path',type=str,help=" ",default="data/")
     parser.add_argument('--in_dir', help='input',  type=str,default="/home/menglong/workspace/code/referred/conll2019-snopes-crawling/final_corpus/mocheg2/train")
     parser.add_argument('--mode',type=str,help=" ",default="preprocess_for_generation")
     args = parser.parse_args()
@@ -109,7 +109,7 @@ if __name__ == '__main__':
     #都是预处理
     if args.mode=="preprocess_for_generation":
         preprocess_for_generation(args.data_path,"Corpus2.csv",out_name="Corpus2_for_controllable_generation.csv")
-    elif args.mode=="preprocess_for_generation_inference":        
+    elif args.mode=="preprocess_for_generation_inference":
         preprocess_for_generation_inference( args.data_path+ "/test")
     elif args.mode=="preprocess_for_verification" :
         preprocess_for_verification( args.data_path)

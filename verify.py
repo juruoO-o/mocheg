@@ -98,7 +98,6 @@ def hyper_search(config_kwargs):
 @click.option('--save_predict', type=str,default="y" ) 
 # @click.option('--final_checkpoint_dir', help='dir for final paper results', required=True, metavar='DIR',default='verification/output/models/text_image') 
 def main(ctx,  **config_kwargs):
- 
     mode=config_kwargs["mode"]
     if mode =="train":
         train_loop(None,config_kwargs)
@@ -106,8 +105,6 @@ def main(ctx,  **config_kwargs):
         hyper_search(config_kwargs)
     elif mode == "inference":
         inference( config_kwargs)
-    
-     
 
 # python main.py --mode=preprocess_for_verification
 # python verify.py     --model_type=CLAIM_TEXT_IMAGE_attention_5_4 --batch_size=2048 --lr=0.001 --loss_weight_power=2

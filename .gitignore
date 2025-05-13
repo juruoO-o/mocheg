@@ -53,3 +53,6 @@ controllable/generation/output/
 verification/output
 .vscode 
 test/trouble_shooting.sh
+
+
+model/

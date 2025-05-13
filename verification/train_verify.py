@@ -26,7 +26,7 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 from util.read_example import get_relevant_document_dir
 
 from verification.util.data_util import get_data_loader, get_loss_weights
-from transformers import CLIPProcessor, CLIPModel, BertTokenizer, BertModel
+from transformers import CLIPProcessor, CLIPModel, BertTokenizer, BertModel,AutoModel
 from verification.util.constants import *
 from verification.model import MultiModal2
 from verification.util.enums import ModelAttribute
@@ -85,13 +85,19 @@ def train_loop(tuner_config, config_kwargs):
 
     device = verify_init()
     model_type_enum = ModelAttribute[args.model_type]
+    #------------------------path,choose 1 in 3-----------------------
     # clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
     clip_model = CLIPModel.from_pretrained(
-        "D:\zzy\FV-multimodal\Mocheg\model\clip-vit-base-patch32")
+        "/Users/juruo/Desktop/workspace/FV-multimodal/Mocheg/model/clip-vit-base-patch32")
+    # clip_model = CLIPModel.from_pretrained("D:\zzy\FV-multimodal\Mocheg\model\clip-vit-base-patch32")
+    #------------------------path,end-----------------------
     freeze(clip_model)
+    #------------------------path,choose 1 in 3-----------------------
     # processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
     processor = CLIPProcessor.from_pretrained(
-        "D:\zzy\FV-multimodal\Mocheg\model\clip-vit-base-patch32")
+        "/Users/juruo/Desktop/workspace/FV-multimodal/Mocheg/model/clip-vit-base-patch32")
+    # processor = CLIPProcessor.from_pretrained("D:\zzy\FV-multimodal\Mocheg\model\clip-vit-base-patch32")
+    #------------------------path,end-----------------------
 
     dataloaders, train_label_statistic = get_data_loader(args.train_txt_dir, args.train_img_dir, args.val_txt_dir,
                                                          args.val_img_dir, args.test_txt_dir, args.test_img_dir,
