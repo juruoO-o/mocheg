@@ -9,6 +9,7 @@ import json
 from sentence_transformers.model_card_templates import ModelCardTemplate
 from sentence_transformers.util import   fullname
 from sentence_transformers.util import   batch_to_device
+import torch # Add this import
 class MultiMediaSentenceTransformer( SentenceTransformer):
     def fit(self,
             train_objectives ,
@@ -17,7 +18,7 @@ class MultiMediaSentenceTransformer( SentenceTransformer):
             steps_per_epoch = None,
             scheduler: str = 'WarmupLinear',
             warmup_steps: int = 10000,
-            optimizer_class  = transformers.AdamW,
+            optimizer_class = torch.optim.AdamW, # Changed this line
             optimizer_params : Dict[str, object]= {'lr': 2e-5},
             weight_decay: float = 0.01,
             evaluation_steps: int = 0,

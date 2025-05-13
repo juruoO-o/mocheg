@@ -106,7 +106,7 @@ def parser_args():
 if __name__ == '__main__':
     # main()
     args = parser_args() 
-    
+    #都是预处理
     if args.mode=="preprocess_for_generation":
         preprocess_for_generation(args.data_path,"Corpus2.csv",out_name="Corpus2_for_controllable_generation.csv")
     elif args.mode=="preprocess_for_generation_inference":        
