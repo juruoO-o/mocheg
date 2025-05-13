@@ -15,12 +15,12 @@ python retrieve_similarity_recall.py --bi_encoder_checkpoint=/home/menglong/work
 
 ### claim verification 
 ## train with gold evidence
-python main.py --mode=preprocess_for_verification 
-python verify.py     --model_type=CLAIM_TEXT_IMAGE_attention_5_4 --batch_size=2048 --lr=0.001 --loss_weight_power=2   
+python main.py --mode=preprocess_for_verification
+python verify.py --model_type=CLAIM_TEXT_IMAGE_attention_5_4 --batch_size=2048 --lr=0.001 --loss_weight_power=2
 ##generate verification_result.csv to support explanation generation
 CUDA_VISIBLE_DEVICES=2 python verify.py --mode=inference --save_in_checkpoint_dir="n" --model_type=CLAIM_TEXT_IMAGE_attention_5_4   --checkpoint_dir=/home/menglong/workspace/code/misinformation_detection/verification/output/runs/00810- 
 CUDA_VISIBLE_DEVICES=3 python verify.py --mode=inference --save_in_checkpoint_dir="n" --model_type=CLAIM_TEXT_IMAGE_attention_5_4   --checkpoint_dir=/home/menglong/workspace/code/misinformation_detection/verification/output/runs/00907- --evidence_file_name=retrieval/retrieval_result.csv 
- 
+
 
 
 ### explanation generation

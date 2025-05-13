@@ -61,17 +61,18 @@ def add_image_evidence(data_path,out_name):
 
 def preprocess_for_verification(data_path):
     preprocess_for_verification_one_subset( data_path+ "/train")
-    print("finish one")
+    print("finish 1")
     preprocess_for_verification_one_subset( data_path+"/val")
-    print("finish one")
+    print("finish 2")
     preprocess_for_verification_one_subset(  data_path+"/test")
-        
+    print("finish 3")
+
         
         
 import argparse
 def parser_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_path',type=str,help=" ",default="/home/menglong/workspace/code/referred/conll2019-snopes-crawling/final_corpus/mocheg2")
+    parser.add_argument('--data_path',type=str,help=" ",default="../data/")
     args = parser.parse_args()
     return args
  
@@ -80,4 +81,5 @@ def parser_args():
 
 if __name__ == '__main__':
     args = parser_args()
-    preprocess_for_verification_one_subset( args.data_path+ "/train")
+    # preprocess_for_verification_one_subset( args.data_path+ "/train")
+    preprocess_for_verification(args.data_path)

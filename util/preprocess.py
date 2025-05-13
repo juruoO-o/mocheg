@@ -5,7 +5,7 @@ import pandas as pd
 
 def merge_evidence(data_path, out_name,drop_invalid_data_func):
     corpus=os.path.join(data_path,"Corpus2.csv")
-    evidence_df = pd.read_csv(corpus ,encoding="utf8")
+    evidence_df = pd.read_csv(corpus ,encoding="utf8",low_memory=False)
     evidence_df=drop_invalid_data_func(evidence_df)
     out_corpus=os.path.join(data_path,out_name)
     evidence_list=[]

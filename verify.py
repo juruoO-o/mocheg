@@ -87,8 +87,8 @@ def hyper_search(config_kwargs):
 @click.option('--verbos', type=str,default="y" )  
 @click.option('--mode', type=str,default="train" )  
 @click.option('--model_type', type=str,default="CLAIM_TEXT_IMAGE_attention_5_4" )  #CLAIM_IMAGE
-@click.option('--batch_size', type=int,default=128, metavar='INT')
-@click.option('--lr', type=float,default=0.1 )
+@click.option('--batch_size', type=int,default=2048, metavar='INT')
+@click.option('--lr', type=float,default=0.0011 )
 @click.option('--early_stop', type=int,default=10, metavar='INT')
 @click.option('--loss_weight_power', type=int,default=2, metavar='INT')
 @click.option('--is_wandb', type=str,default="y" )  #CLAIM_IMAGE
@@ -110,8 +110,9 @@ def main(ctx,  **config_kwargs):
     
      
 
-
-
+# python main.py --mode=preprocess_for_verification
+# python verify.py     --model_type=CLAIM_TEXT_IMAGE_attention_5_4 --batch_size=2048 --lr=0.001 --loss_weight_power=2
+#
 
 if __name__ == "__main__":
     

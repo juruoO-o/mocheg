@@ -15,7 +15,7 @@ from transformers import CLIPTokenizer
 
 class ImageSearcher:
     def __init__(self,image_encoder_checkpoint)  :
-        #First, we load the respective CLIP model
+        #First, we load the respective clip-vit-base-patch32 model
         self.model = SentenceTransformer(image_encoder_checkpoint)
         # self.model._first_module().max_seq_length =77
         self.tokenizer_for_truncation=  CLIPTokenizer.from_pretrained("openai/clip-vit-base-patch32")
