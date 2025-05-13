@@ -216,19 +216,30 @@ def train(model, dataloaders, device, optimizer, max_image_num, args, train_labe
         wandb.run.name = f"{args.cur_run_id}-{wandb.run.name}"
     epoch = 0
     if args.mode in ["train", "hyper_search"]:
-        print('Epoch {}/{}'.format(epoch, EPOCHS))
-        epoch_avg_acc, f1, pre, recall, best_valid_f1, best_epoch, is_early_stop = val_phase(accum_iter, model,
-                                                                                             dataloaders["Test"], device,
-                                                                                             best_valid_f1, args, "n",
-                                                                                             epoch, best_epoch)
-        logger.write(
-            "F1: {:.4f}, Precision: {:.4f}, Recall : {:.4f}, Accuracy: {:.4f}".format(f1, pre, recall, epoch_avg_acc))
+        # print('Epoch {}/{}'.format(epoch, EPOCHS))
+        # epoch_avg_acc, f1, pre, recall, best_valid_f1, best_epoch, is_early_stop = val_phase(accum_iter, model,
+        #                                                                                      dataloaders["Test"], device,
+        #                                                                                      best_valid_f1, args, "n",
+        #                                                                                      epoch, best_epoch)
+        # logger.write(
+        #     "F1: {:.4f}, Precision: {:.4f}, Recall : {:.4f}, Accuracy: {:.4f}".format(f1, pre, recall, epoch_avg_acc))
         for epoch in range(0, EPOCHS):
             print('-' * 50)
             print('Epoch {}/{}'.format(epoch + 1, EPOCHS))
             epoch_avg_loss = train_phase(accum_iter, model, dataloaders["Train"], device, optimizer, criterion)
             epoch_avg_acc, f1, pre, recall, best_valid_f1, best_epoch, is_early_stop = val_phase(accum_iter, model,
                                                                                                  dataloaders["Test"],
+                                                                                                 device, best_valid_f1,
+                                                                                                 args, "n", epoch,
+                                                                                                 best_epoch)
+            c = "F1: {:.4f}, Precision: {:.4f}, Recall : {:.4f}, Accuracy: {:.4f}, Loss: {:.4f}.".format(f1, pre,
+                                                                                                         recall,
+                                                                                                         epoch_avg_acc,
+                                                                                                         epoch_avg_loss)
+            logger.write(c)
+            #check the val acc
+            epoch_avg_acc, f1, pre, recall, best_valid_f1, best_epoch, is_early_stop = val_phase(accum_iter, model,
+                                                                                                 dataloaders["Val"],
                                                                                                  device, best_valid_f1,
                                                                                                  args, "n", epoch,
                                                                                                  best_epoch)
