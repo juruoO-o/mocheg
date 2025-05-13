@@ -218,7 +218,7 @@ def train(model, dataloaders, device, optimizer, max_image_num, args, train_labe
     if args.mode in ["train", "hyper_search"]:
         print('Epoch {}/{}'.format(epoch, EPOCHS))
         epoch_avg_acc, f1, pre, recall, best_valid_f1, best_epoch, is_early_stop = val_phase(accum_iter, model,
-                                                                                             dataloaders["Val"], device,
+                                                                                             dataloaders["Test"], device,
                                                                                              best_valid_f1, args, "n",
                                                                                              epoch, best_epoch)
         logger.write(
